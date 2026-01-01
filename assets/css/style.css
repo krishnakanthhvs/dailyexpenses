@@ -162,3 +162,70 @@ body {
 .table tbody tr:hover {
     background-color: #f9fafb;
 }
+
+.login-card {
+    max-width: 950px;
+    width: 100%;
+    background: #fff;
+    border-radius: 18px;
+    box-shadow: 0 30px 70px rgba(0,0,0,0.15);
+    overflow: hidden;
+}
+
+.login-left {
+    background: linear-gradient(180deg, #fff7f0, #fdf1e8);
+    padding: 48px;
+}
+
+.login-left h3 {
+    font-weight: 700;
+}
+
+.login-left p {
+    color: #6b7280;
+}
+
+.login-left img {
+    width: 100%;
+    border-radius: 14px;
+    margin-top: 24px;
+}
+
+.login-right {
+    padding: 48px;
+}
+
+.brand {
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: #c29b6d;
+}
+
+.form-control {
+    border-radius: 10px;
+    padding: 12px 14px;
+}
+
+.login-btn {
+    border-radius: 30px;
+    padding: 12px;
+    font-weight: 600;
+    background: linear-gradient(90deg, #ff8a4c, #ff6b3d);
+    border: none;
+}
+
+.login-btn:hover {
+    opacity: 0.95;
+}
+
+.small-link {
+    font-size: 14px;
+    text-decoration: none;
+    color: #ff7a45;
+}
+
+@media (max-width: 768px) {
+    .login-left {
+        display: none;
+    }
+}

@@ -313,3 +313,16 @@ function getCategoryPieChart($conn, $userId) {
 
     return [$labels, $data];
 }
+
+//Token Generation
+
+function getUserIdFromToken($conn, $token) {
+    $stmt = $conn->prepare("
+        SELECT id FROM users
+        WHERE api_token = ?
+        LIMIT 1
+    ");
+    $stmt->bind_param("s", $token);
+    $stmt->execute();
+    return $stmt->get_result()->fetch_column();
+}
