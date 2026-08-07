@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 // Context
 import { ExpenseProvider } from './context/ExpenseContext';
@@ -7,6 +7,9 @@ import { ExpenseProvider } from './context/ExpenseContext';
 import Login from './components/auth/Login';
 import Register from './components/auth/Register';
 import ForgotPassword from './components/auth/ForgotPassword';
+
+// Public Unauthenticated Page
+import PublicAddExpense from './components/dashboard/PublicAddExpense';
 
 // Layout & Dashboard Components
 import Sidebar from './components/layout/Sidebar';
@@ -19,6 +22,20 @@ import EMITracker from './components/dashboard/EMITracker';
 import Cards from './components/dashboard/Cards';
 
 export default function App() {
+  // 1. CHECK URL PATH FOR PUBLIC ROUTE FIRST (No login required)
+  const [currentPath, setCurrentPath] = useState(window.location.pathname);
+
+  useEffect(() => {
+    const handlePopState = () => setCurrentPath(window.location.pathname);
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, []);
+
+  // 🟢 IF PATH IS /add-expense, RENDER PUBLIC FORM IMMEDIATELY WITHOUT LOGIN CHECK
+  if (currentPath === '/add-expense') {
+    return <PublicAddExpense />;
+  }
+
   // Authentication State
   const [user, setUser] = useState(() => {
     const saved = localStorage.getItem('auth_user');
@@ -38,46 +55,33 @@ export default function App() {
     setAuthView('login');
   };
 
-  // -------------------------------------------------------------
-  // 1. UNAUTHENTICATED VIEW (Login / Register / Forgot Password)
-  // -------------------------------------------------------------
+  // 🔒 UNAUTHENTICATED USERS: Render Login / Register Screen
   if (!user) {
+    if (authView === 'register') {
+      return <Register onSwitchToLogin={() => setAuthView('login')} />;
+    }
+    if (authView === 'forgot') {
+      return <ForgotPassword onSwitchToLogin={() => setAuthView('login')} />;
+    }
     return (
-      <div className="min-h-screen bg-slate-100 flex items-center justify-center p-4">
-        {authView === 'login' && (
-          <Login
-            onLoginSuccess={(userData) => setUser(userData)}
-            onSwitchToRegister={() => setAuthView('register')}
-            onSwitchToForgot={() => setAuthView('forgot')}
-          />
-        )}
-
-        {authView === 'register' && (
-          <Register
-            onRegisterSuccess={(userData) => setUser(userData)}
-            onSwitchToLogin={() => setAuthView('login')}
-          />
-        )}
-
-        {authView === 'forgot' && (
-          <ForgotPassword
-            onSwitchToLogin={() => setAuthView('login')}
-          />
-        )}
-      </div>
+      <Login
+        onLoginSuccess={(userData) => {
+          localStorage.setItem('auth_user', JSON.stringify(userData));
+          setUser(userData);
+        }}
+        onSwitchToRegister={() => setAuthView('register')}
+        onSwitchToForgot={() => setAuthView('forgot')}
+      />
     );
   }
 
-  // -------------------------------------------------------------
-  // 2. AUTHENTICATED VIEW (Full Dashboard Application)
-  // -------------------------------------------------------------
+  // 🟢 AUTHENTICATED USERS: Render Main Application
   return (
     <ExpenseProvider>
-      <div className="flex min-h-screen bg-slate-50 text-slate-900 font-sans">
-        
-        {/* Responsive Sidebar */}
-        <Sidebar 
-          activeTab={activeTab} 
+      <div className="flex h-screen bg-slate-50 overflow-hidden font-sans">
+        {/* Sidebar Navigation */}
+        <Sidebar
+          activeTab={activeTab}
           setActiveTab={setActiveTab}
           isCollapsed={isCollapsed}
           setIsCollapsed={setIsCollapsed}
@@ -85,22 +89,17 @@ export default function App() {
           setIsMobileOpen={setIsMobileOpen}
         />
 
-        {/* Right Content Area */}
-        <div className="flex-1 flex flex-col min-w-0">
-          
-          {/* Top Sticky Nav */}
-          <Navbar 
-            activeTab={activeTab} 
-            onMobileMenuToggle={() => setIsMobileOpen(!isMobileOpen)}
-            isMobileOpen={isMobileOpen}
+        {/* Main Workspace */}
+        <div className="flex-1 flex flex-col min-w-0 overflow-hidden">
+          <Navbar
             user={user}
             onLogout={handleLogout}
+            onToggleMobileSidebar={() => setIsMobileOpen(!isMobileOpen)}
           />
 
-          {/* Main Dashboard Views */}
-          <main className="flex-1 p-4 sm:p-6 md:p-8 overflow-y-auto">
+          <main className="flex-1 overflow-y-auto p-4 sm:p-6 lg:p-8">
             <div className="mx-auto space-y-6 sm:space-y-8">
-              
+
               {/* Dashboard View */}
               {activeTab === 'dashboard' && (
                 <>
@@ -145,7 +144,6 @@ export default function App() {
             </div>
           </main>
         </div>
-
       </div>
     </ExpenseProvider>
   );

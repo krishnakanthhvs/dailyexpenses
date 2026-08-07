@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { 
   Search, 
   Trash2, 
@@ -11,11 +11,14 @@ import {
   TrendingDown,
   Wallet,
   Loader2,
-  Building2
+  Building2,
+  Users,
+  UserCheck
 } from 'lucide-react';
 import { useExpenses } from '../../context/ExpenseContext';
 import { CATEGORY_COLORS, DEFAULT_CATEGORIES } from '../../utils/constants';
 import { formatCurrency } from '../../utils/formatters';
+import FamilyManager from './FamilyManager';
 
 const POPULAR_BANKS = [
   'HDFC Bank',
@@ -40,6 +43,10 @@ export default function TransactionTable() {
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
 
+  // Family Manager & Spent By States
+  const [showFamilyManager, setShowFamilyManager] = useState(false);
+  const [familyMembers, setFamilyMembers] = useState([]);
+
   // Add Transaction Modal State
   const [showAddModal, setShowAddModal] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -50,8 +57,26 @@ export default function TransactionTable() {
     type: 'Debit',
     paymentMethod: 'UPI',
     bankName: 'HDFC Bank',
+    spentBy: 'Self',
     date: new Date().toISOString().split('T')[0],
   });
+
+  // Fetch Family Members for "Spent By" dropdown selection
+  const fetchFamilyMembers = async () => {
+    try {
+      const res = await fetch('/api/family');
+      if (res.ok) {
+        const data = await res.json();
+        setFamilyMembers(data);
+      }
+    } catch (err) {
+      console.error('Failed to fetch family members for dropdown:', err);
+    }
+  };
+
+  useEffect(() => {
+    fetchFamilyMembers();
+  }, [showFamilyManager]);
 
   // Handle Add Transaction Submit to DB
   const handleAddSubmit = async (e) => {
@@ -73,6 +98,7 @@ export default function TransactionTable() {
       type: 'Debit',
       paymentMethod: 'UPI',
       bankName: 'HDFC Bank',
+      spentBy: 'Self',
       date: new Date().toISOString().split('T')[0],
     });
   };
@@ -83,6 +109,7 @@ export default function TransactionTable() {
       const matchesSearch =
         exp.note.toLowerCase().includes(searchQuery.toLowerCase()) ||
         exp.category.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        (exp.spentBy && exp.spentBy.toLowerCase().includes(searchQuery.toLowerCase())) ||
         (exp.paymentMethod && exp.paymentMethod.toLowerCase().includes(searchQuery.toLowerCase())) ||
         (exp.bankName && exp.bankName.toLowerCase().includes(searchQuery.toLowerCase()));
 
@@ -104,19 +131,15 @@ export default function TransactionTable() {
   // Utility helper function
   const formatDate = (dateString) => {
     if (!dateString) return '';
-    
-    // Extract just the YYYY-MM-DD part if it's an ISO string to avoid UTC shift
     const cleanDateStr = dateString.includes('T') ? dateString.split('T')[0] : dateString;
     const [year, month, day] = cleanDateStr.split('-');
-
-    // Create date object using local year, month (0-indexed), and day
     const dateObj = new Date(year, month - 1, day);
 
     return dateObj.toLocaleDateString('en-GB', {
       day: 'numeric',
       month: 'short',
       year: 'numeric'
-    }); // Output: "6 Aug 2026"
+    });
   };
 
   // KPI Metrics Calculations
@@ -143,6 +166,34 @@ export default function TransactionTable() {
 
   return (
     <div className="space-y-6">
+
+      {/* Header Actions */}
+      <div className="flex items-center justify-between">
+        <h2 className="text-lg font-bold text-slate-800">Transactions</h2>
+        <div className="flex gap-2">
+          <button
+            onClick={() => setShowFamilyManager(!showFamilyManager)}
+            className="px-3 py-2 text-xs font-semibold text-slate-700 bg-slate-100 hover:bg-slate-200 rounded-lg flex items-center gap-1.5 transition-colors"
+          >
+            <Users className="w-4 h-4 text-indigo-600" />
+            {showFamilyManager ? 'Hide Family Manager' : 'Manage Family'}
+          </button>
+
+          <button
+            onClick={() => setShowAddModal(true)}
+            className="px-4 py-2 text-xs font-semibold text-white bg-indigo-600 hover:bg-indigo-700 rounded-lg flex items-center gap-1.5 shadow-sm"
+          >
+            <Plus className="w-4 h-4" /> Add Expense
+          </button>
+        </div>
+      </div>
+
+      {/* Collapsible Family Manager Widget */}
+      {showFamilyManager && (
+        <div className="p-4 bg-slate-50 border border-slate-200 rounded-2xl mb-4">
+          <FamilyManager />
+        </div>
+      )}
 
       {/* KPI Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
@@ -211,7 +262,7 @@ export default function TransactionTable() {
               <Search className="w-4 h-4 absolute left-3 top-2.5 text-slate-400" />
               <input
                 type="text"
-                placeholder="Search notes, category, bank..."
+                placeholder="Search notes, spent by, bank..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="w-full sm:w-56 pl-9 pr-3 py-1.5 text-xs border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
@@ -272,6 +323,7 @@ export default function TransactionTable() {
               <tr>
                 <th className="px-6 py-3.5">Type</th>
                 <th className="px-6 py-3.5">Description</th>
+                <th className="px-6 py-3.5">Spent By</th>
                 <th className="px-6 py-3.5">Category</th>
                 <th className="px-6 py-3.5">Method & Bank</th>
                 <th className="px-6 py-3.5">Date</th>
@@ -282,7 +334,7 @@ export default function TransactionTable() {
             <tbody className="divide-y divide-slate-100">
               {loading ? (
                 <tr>
-                  <td colSpan="7" className="px-6 py-12 text-center text-slate-400">
+                  <td colSpan="8" className="px-6 py-12 text-center text-slate-400">
                     <div className="flex items-center justify-center gap-2">
                       <Loader2 className="w-5 h-5 animate-spin text-indigo-600" />
                       Loading transactions from database...
@@ -310,6 +362,13 @@ export default function TransactionTable() {
                       </td>
 
                       <td className="px-6 py-4 font-semibold text-slate-900">{exp.note}</td>
+
+                      <td className="px-6 py-4">
+                        <span className="inline-flex items-center gap-1 font-semibold text-slate-700 bg-slate-100 px-2.5 py-1 rounded-md text-[11px]">
+                          <UserCheck className="w-3 h-3 text-indigo-500" />
+                          {exp.spentBy || 'Self'}
+                        </span>
+                      </td>
                       
                       <td className="px-6 py-4">
                         <span
@@ -350,7 +409,7 @@ export default function TransactionTable() {
                 })
               ) : (
                 <tr>
-                  <td colSpan="7" className="px-6 py-12 text-center text-slate-400">
+                  <td colSpan="8" className="px-6 py-12 text-center text-slate-400">
                     No transactions found in the database.
                   </td>
                 </tr>
@@ -400,12 +459,29 @@ export default function TransactionTable() {
                 <label className="block text-xs font-semibold text-slate-700 mb-1">Description / Note *</label>
                 <input
                   type="text"
-                  placeholder="e.g. Swiggy food, Monthly Salary, Grocery"
+                  placeholder="e.g. Swiggy food, Petrol, Grocery"
                   value={newTx.note}
                   onChange={(e) => setNewTx({ ...newTx, note: e.target.value })}
                   className="w-full px-3 py-2 border border-slate-300 rounded-lg text-xs focus:ring-2 focus:ring-indigo-500 focus:outline-none"
                   required
                 />
+              </div>
+
+              {/* Spent By Selection */}
+              <div>
+                <label className="block text-xs font-semibold text-slate-700 mb-1">Spent By (Person)</label>
+                <select
+                  value={newTx.spentBy}
+                  onChange={(e) => setNewTx({ ...newTx, spentBy: e.target.value })}
+                  className="w-full px-3 py-2 border border-slate-300 rounded-lg text-xs focus:ring-2 focus:ring-indigo-500 bg-white"
+                >
+                  <option value="Self">Me (Self)</option>
+                  {familyMembers.map((member) => (
+                    <option key={member.id} value={member.name}>
+                      {member.name} ({member.relationship})
+                    </option>
+                  ))}
+                </select>
               </div>
 
               <div className="grid grid-cols-2 gap-3">

@@ -4,6 +4,7 @@ import dotenv from 'dotenv';
 import authenticateToken from './middleware/auth.js';
 import transactionRoutes from './routes/transactions.js';
 import emiRoutes from './routes/emis.js';
+import familyRoutes from './routes/family.js';
 
 dotenv.config();
 
@@ -19,16 +20,22 @@ app.use((req, res, next) => {
   next();
 });
 
-// Root route for quick health checks
+// Root route for health check
 app.get('/', (req, res) => {
   res.send('Expense Dashboard API is active!');
 });
 
-// API Routes
-app.use('/api/transactions', authenticateToken, transactionRoutes);
+// 🔓 1. PUBLIC / UNGUARDED ROUTES (Mounted directly to router)
+app.use('/api/family', familyRoutes); 
+// Note: /api/family/public-lookup is inside familyRoutes and will be accessible without auth.
+
+app.use('/api/transactions', transactionRoutes); 
+// Note: /api/transactions/public-add is inside transactionRoutes and handles unauthenticated posts.
+
+// 🔒 2. AUTHENTICATED ROUTES
 app.use('/api/emis', authenticateToken, emiRoutes);
 
-// Catch-all for unhandled routes
+// 3. CATCH-ALL FOR UNHANDLED ENDPOINTS
 app.use((req, res) => {
   res.status(404).json({ error: 'Endpoint not found' });
 });
@@ -38,7 +45,6 @@ app.listen(PORT, () => {
   console.log(`🚀 Express Backend running on http://localhost:${PORT}`);
 });
 
-// Prevent immediate crash on unhandled promise rejections
 process.on('unhandledRejection', (reason, promise) => {
   console.error('Unhandled Rejection at:', promise, 'reason:', reason);
 });
