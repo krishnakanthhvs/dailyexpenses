@@ -1,2 +1,0 @@
-[2026-01-01 01:05:52] [exception] [user:1] Call to undefined function getMonthlyExpenses() {"file":"/home/u788563593/domains/mydailydiary.space/public_html/dailyexpenses/dashboard.php","line":11,"trace":"#0 {main}"}
-[2026-01-01 01:05:54] [exception] [user:1] Call to undefined function getMonthlyExpenses() {"file":"/home/u788563593/domains/mydailydiary.space/public_html/dailyexpenses/dashboard.php","line":11,"trace":"#0 {main}"}
