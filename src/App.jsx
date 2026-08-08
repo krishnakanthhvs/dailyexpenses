@@ -20,6 +20,7 @@ import CategoryChart from './components/dashboard/CategoryChart';
 import TransactionTable from './components/dashboard/TransactionTable';
 import EMITracker from './components/dashboard/EMITracker';
 import Cards from './components/dashboard/Cards';
+import Settings from './components/dashboard/Settings';
 
 export default function App() {
   // 1. CHECK URL PATH FOR PUBLIC ROUTE FIRST (No login required)
@@ -135,11 +136,7 @@ export default function App() {
               )}
 
               {/* Settings View Placeholder */}
-              {activeTab === 'settings' && (
-                <div className="bg-white p-8 rounded-xl border border-slate-200 text-center text-slate-500">
-                  Settings view ready for implementation!
-                </div>
-              )}
+              {activeTab === 'settings' && <Settings />}
 
             </div>
           </main>

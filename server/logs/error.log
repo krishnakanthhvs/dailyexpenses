@@ -1,0 +1,112 @@
+[2026-08-08T19:49:32.025Z] [AUTH_403_FORBIDDEN]
+{
+  "message": "invalid signature",
+  "receivedToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJodnNrcmlzaG5ha2FudGgiLCJlbWFpbCI6ImtyaXNobmFAZ21haWwuY29tIiwiaWF0IjoxNzg2MjE4NTcwLCJleHAiOjE3ODY4MjMzNzB9.digFMmvRIIHF4FAHxs-Cny3Qh7-PEqkvZ2lOoN62Ed8",
+  "path": "/api/settings"
+}
+--------------------------------------------------
+[2026-08-08T19:49:32.033Z] [AUTH_403_FORBIDDEN]
+{
+  "message": "invalid signature",
+  "receivedToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJodnNrcmlzaG5ha2FudGgiLCJlbWFpbCI6ImtyaXNobmFAZ21haWwuY29tIiwiaWF0IjoxNzg2MjE4NTcwLCJleHAiOjE3ODY4MjMzNzB9.digFMmvRIIHF4FAHxs-Cny3Qh7-PEqkvZ2lOoN62Ed8",
+  "path": "/api/settings"
+}
+--------------------------------------------------
+[2026-08-08T19:49:36.188Z] [AUTH_403_FORBIDDEN]
+{
+  "message": "invalid signature",
+  "receivedToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJodnNrcmlzaG5ha2FudGgiLCJlbWFpbCI6ImtyaXNobmFAZ21haWwuY29tIiwiaWF0IjoxNzg2MjE4NTcwLCJleHAiOjE3ODY4MjMzNzB9.digFMmvRIIHF4FAHxs-Cny3Qh7-PEqkvZ2lOoN62Ed8",
+  "path": "/api/settings"
+}
+--------------------------------------------------
+[2026-08-08T19:49:36.193Z] [AUTH_403_FORBIDDEN]
+{
+  "message": "invalid signature",
+  "receivedToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJodnNrcmlzaG5ha2FudGgiLCJlbWFpbCI6ImtyaXNobmFAZ21haWwuY29tIiwiaWF0IjoxNzg2MjE4NTcwLCJleHAiOjE3ODY4MjMzNzB9.digFMmvRIIHF4FAHxs-Cny3Qh7-PEqkvZ2lOoN62Ed8",
+  "path": "/api/settings"
+}
+--------------------------------------------------
+[2026-08-08T19:49:43.624Z] [AUTH_403_FORBIDDEN]
+{
+  "message": "invalid signature",
+  "receivedToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJodnNrcmlzaG5ha2FudGgiLCJlbWFpbCI6ImtyaXNobmFAZ21haWwuY29tIiwiaWF0IjoxNzg2MjE4NTcwLCJleHAiOjE3ODY4MjMzNzB9.digFMmvRIIHF4FAHxs-Cny3Qh7-PEqkvZ2lOoN62Ed8",
+  "path": "/api/settings/username"
+}
+--------------------------------------------------
+[2026-08-08T19:49:48.888Z] [AUTH_403_FORBIDDEN]
+{
+  "message": "invalid signature",
+  "receivedToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJodnNrcmlzaG5ha2FudGgiLCJlbWFpbCI6ImtyaXNobmFAZ21haWwuY29tIiwiaWF0IjoxNzg2MjE4NTcwLCJleHAiOjE3ODY4MjMzNzB9.digFMmvRIIHF4FAHxs-Cny3Qh7-PEqkvZ2lOoN62Ed8",
+  "path": "/api/settings"
+}
+--------------------------------------------------
+[2026-08-08T19:49:48.892Z] [AUTH_403_FORBIDDEN]
+{
+  "message": "invalid signature",
+  "receivedToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJodnNrcmlzaG5ha2FudGgiLCJlbWFpbCI6ImtyaXNobmFAZ21haWwuY29tIiwiaWF0IjoxNzg2MjE4NTcwLCJleHAiOjE3ODY4MjMzNzB9.digFMmvRIIHF4FAHxs-Cny3Qh7-PEqkvZ2lOoN62Ed8",
+  "path": "/api/settings"
+}
+--------------------------------------------------
+[2026-08-08T19:50:43.005Z] [AUTH_403_FORBIDDEN]
+{
+  "message": "invalid signature",
+  "receivedToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJodnNrcmlzaG5ha2FudGgiLCJlbWFpbCI6ImtyaXNobmFAZ21haWwuY29tIiwiaWF0IjoxNzg2MjE4NTcwLCJleHAiOjE3ODY4MjMzNzB9.digFMmvRIIHF4FAHxs-Cny3Qh7-PEqkvZ2lOoN62Ed8",
+  "path": "/api/settings"
+}
+--------------------------------------------------
+[2026-08-08T19:50:43.010Z] [AUTH_403_FORBIDDEN]
+{
+  "message": "invalid signature",
+  "receivedToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJodnNrcmlzaG5ha2FudGgiLCJlbWFpbCI6ImtyaXNobmFAZ21haWwuY29tIiwiaWF0IjoxNzg2MjE4NTcwLCJleHAiOjE3ODY4MjMzNzB9.digFMmvRIIHF4FAHxs-Cny3Qh7-PEqkvZ2lOoN62Ed8",
+  "path": "/api/settings"
+}
+--------------------------------------------------
+[2026-08-08T19:51:09.432Z] [AUTH_403_FORBIDDEN]
+{
+  "message": "invalid signature",
+  "receivedToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJodnNrcmlzaG5ha2FudGgiLCJlbWFpbCI6ImtyaXNobmFAZ21haWwuY29tIiwiaWF0IjoxNzg2MjE4NjY4LCJleHAiOjE3ODY4MjM0Njh9.lpXWMGCY-PdmQ2bsADN8WfTAKaer2mZi2ez6xkY_TOs",
+  "path": "/api/settings"
+}
+--------------------------------------------------
+[2026-08-08T19:51:09.438Z] [AUTH_403_FORBIDDEN]
+{
+  "message": "invalid signature",
+  "receivedToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJodnNrcmlzaG5ha2FudGgiLCJlbWFpbCI6ImtyaXNobmFAZ21haWwuY29tIiwiaWF0IjoxNzg2MjE4NjY4LCJleHAiOjE3ODY4MjM0Njh9.lpXWMGCY-PdmQ2bsADN8WfTAKaer2mZi2ez6xkY_TOs",
+  "path": "/api/settings"
+}
+--------------------------------------------------
+[2026-08-08T19:51:13.061Z] [AUTH_403_FORBIDDEN]
+{
+  "message": "invalid signature",
+  "receivedToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJodnNrcmlzaG5ha2FudGgiLCJlbWFpbCI6ImtyaXNobmFAZ21haWwuY29tIiwiaWF0IjoxNzg2MjE4NjY4LCJleHAiOjE3ODY4MjM0Njh9.lpXWMGCY-PdmQ2bsADN8WfTAKaer2mZi2ez6xkY_TOs",
+  "path": "/api/settings/username"
+}
+--------------------------------------------------
+[2026-08-08T19:54:32.138Z] [AUTH_403_FORBIDDEN]
+{
+  "message": "invalid signature",
+  "receivedToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJodnNrcmlzaG5ha2FudGgiLCJlbWFpbCI6ImtyaXNobmFAZ21haWwuY29tIiwiaWF0IjoxNzg2MjE4ODcwLCJleHAiOjE3ODY4MjM2NzB9.UPeklu2tjz0a9RxoKwfdJWgiiM-0xuLkqf5EY89aCzw",
+  "path": "/api/settings"
+}
+--------------------------------------------------
+[2026-08-08T19:54:32.150Z] [AUTH_403_FORBIDDEN]
+{
+  "message": "invalid signature",
+  "receivedToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJodnNrcmlzaG5ha2FudGgiLCJlbWFpbCI6ImtyaXNobmFAZ21haWwuY29tIiwiaWF0IjoxNzg2MjE4ODcwLCJleHAiOjE3ODY4MjM2NzB9.UPeklu2tjz0a9RxoKwfdJWgiiM-0xuLkqf5EY89aCzw",
+  "path": "/api/settings"
+}
+--------------------------------------------------
+[2026-08-08T19:54:52.797Z] [AUTH_403_FORBIDDEN]
+{
+  "message": "invalid signature",
+  "receivedToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJodnNrcmlzaG5ha2FudGgiLCJlbWFpbCI6ImtyaXNobmFAZ21haWwuY29tIiwiaWF0IjoxNzg2MjE4ODcwLCJleHAiOjE3ODY4MjM2NzB9.UPeklu2tjz0a9RxoKwfdJWgiiM-0xuLkqf5EY89aCzw",
+  "path": "/api/settings"
+}
+--------------------------------------------------
+[2026-08-08T19:54:52.806Z] [AUTH_403_FORBIDDEN]
+{
+  "message": "invalid signature",
+  "receivedToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJodnNrcmlzaG5ha2FudGgiLCJlbWFpbCI6ImtyaXNobmFAZ21haWwuY29tIiwiaWF0IjoxNzg2MjE4ODcwLCJleHAiOjE3ODY4MjM2NzB9.UPeklu2tjz0a9RxoKwfdJWgiiM-0xuLkqf5EY89aCzw",
+  "path": "/api/settings"
+}
+--------------------------------------------------

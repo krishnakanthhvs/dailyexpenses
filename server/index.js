@@ -5,6 +5,8 @@ import authenticateToken from './middleware/auth.js';
 import transactionRoutes from './routes/transactions.js';
 import emiRoutes from './routes/emis.js';
 import familyRoutes from './routes/family.js';
+import settingsRoutes from './routes/settings.js';
+import authRouter from './routes/auth.js';
 
 dotenv.config();
 
@@ -34,6 +36,10 @@ app.use('/api/transactions', transactionRoutes);
 
 // 🔒 2. AUTHENTICATED ROUTES
 app.use('/api/emis', authenticateToken, emiRoutes);
+
+app.use('/api/settings', authenticateToken, settingsRoutes);
+
+app.use('/api/auth', authRouter);
 
 // 3. CATCH-ALL FOR UNHANDLED ENDPOINTS
 app.use((req, res) => {

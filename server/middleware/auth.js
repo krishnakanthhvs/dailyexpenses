@@ -14,8 +14,8 @@ const authenticateToken = (req, res, next) => {
     return next();
   }
 
-  // 2. Validate standard signed JWT
-  jwt.verify(token, process.env.JWT_SECRET || 'your_secret_key', (err, user) => {
+  // 2. Validate standard signed JWT (Matched fallback to 'your_fallback_secret')
+  jwt.verify(token, process.env.JWT_SECRET || 'your_fallback_secret', (err, user) => {
     if (err) {
       logErrorToFile('AUTH_403_FORBIDDEN', {
         message: err.message,
